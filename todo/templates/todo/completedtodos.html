@@ -1,0 +1,39 @@
+{%extends 'todo/base.html'%}
+{%block content%}
+<!--<h1>Here are your completed todos.</h1>
+<ul>
+    {%for todo in todos%}
+    
+    <li>
+        <a href="{%url 'viewtodo' todo.id%}">
+        {%if todo.important%}
+        <strong>{{todo.title}}</strong>
+        {%else%} 
+        {{todo.title}}
+        {%endif%}
+        {%if todo.memo%}
+        -{{todo.memo}}
+        {%endif%}
+        {{todo.datecompleted|date:'M j Y H:i'}}
+        </a>
+    </li>
+    {%endfor%}
+</ul>-->
+
+
+<div class='row justify-content-center mt-5'>
+    <div class='text-center'>
+        <h1>Here lies your completed todos.</h1>
+    </div>
+</div>
+
+<div class='row justify-content-center mt-3'>
+    <div class="col-md-6">
+        <div class="list-group">
+            {%for todo in todos%}
+            <a href="{% url 'viewtodo' todo.id %}" class="list-group-item list-group-item-action{% if todo.important %} list-group-item-danger{% endif %}"><b>{{ todo.title }}</b>-Completed at:{{todo.datecompleted|date:'M j Y H:i'}}</a>
+            {%endfor%}
+        </div>
+    </div>
+</div>
+{%endblock%}

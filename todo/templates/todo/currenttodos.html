@@ -1,0 +1,49 @@
+{%extends 'todo/base.html'%}
+{%block content%}
+<!--<h1>Here are your current todos</h1>
+<ul>
+    {%for todo in todos%}
+    
+    <li>
+        <a href="{%url 'viewtodo' todo.id%}">
+        {%if todo.important%}
+        <strong>{{todo.title}}</strong>
+        {%else%} 
+        {{todo.title}}
+        {%endif%}
+        {%if todo.memo%}
+        -{{todo.memo}}
+        {%endif%}
+        </a>
+    </li>
+    {%endfor%}
+</ul>-->
+
+<div class='row justify-content-center mt-5'>
+    <div class='col-md-5'>
+        <h2>{{todos.count}} Current Todo{{todos.count|pluralize}}</h2>
+    </div>
+</div>
+
+<div class='row justify-content-center mt-3'>
+    <div class="col-md-6">
+        <div class="list-group">
+            
+            {%for todo in todos%}
+            
+            <a href="{% url 'viewtodo' todo.id %}" class="list-group-item list-group-item-action{% if todo.important %} list-group-item-danger{% endif %}"><b>{{ todo.title }}</b>{% if todo.memo %} - {{ todo.memo|truncatechars:30 }}{% endif %}</a>
+            
+            
+            {%endfor%}
+        </div>
+        <br>
+        
+        <div class='text-center'>
+        <a role='button' href="{%url 'createtodo'%}" class="btn btn-primary">New</a>
+        </div>
+       
+        
+    </div>
+</div>
+
+{%endblock%}
